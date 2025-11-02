@@ -1,0 +1,84 @@
+.home-hero {
+    --bg-start: #f8fafc;
+    --bg-end: #eef2ff;
+    --muted: #6b7280;
+    --accent: #1f6f4d;
+
+    display: grid;
+    place-items: center;
+    padding: 4.5rem 1.25rem;
+    background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(16,24,40,0.04);
+    text-align: center;
+}
+
+.home-hero__title {
+    font-size: 2.1rem;
+    margin: 0 0 0.4rem 0;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.home-hero__subtitle {
+    margin: 0 0 1.1rem 0;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.home-hero__actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(16,24,40,0.06);
+    cursor: pointer;
+}
+
+.home-btn--primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 8px 18px rgba(31,111,77,0.06);
+}
+
+.home-btn--ghost {
+    background: transparent;
+    color: var(--muted);
+}
+
+/* small helper for the Inicio paragraph if used elsewhere */
+.inicio {
+    display: inline-block;
+    padding: 0.35rem 0.6rem;
+    border-radius: 8px;
+    background: rgba(235,206,227,0.12);
+    color: #9b6b7b;
+}
+
+/* layout for a small feature grid below hero (if you have .grid container) */
+.home-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(1, minmax(0,1fr));
+    margin-top: 1.6rem;
+}
+
+@media (min-width: 720px) {
+    .home-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .home-hero { padding: 5.5rem 2rem; }
+    .home-hero__title { font-size: 2.6rem; }
+}
+
+@media (min-width: 1100px) {
+    .home-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}

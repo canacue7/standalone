@@ -1,1 +1,81 @@
-<p>product-detail works!</p>
+<div class="product-detail">
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading">
+    <p>Cargando...</p>
+  </div>
+
+  <!-- Product content -->
+  <div *ngIf="!loading && product" class="product-detail__container">
+    <!-- Header con botón de volver -->
+    <div class="product-detail__header">
+      <button class="btn btn--back" [routerLink]="['/menu']">
+        ← Volver al menú
+      </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="product-detail__content">
+      <!-- Imagen -->
+      <div class="product-detail__image-wrapper">
+        <img 
+          [src]="product.image" 
+          [alt]="product.name"
+          class="product-detail__image"
+        />
+      </div>
+
+      <!-- Información -->
+      <div class="product-detail__info">
+        <h1 class="product-detail__title">{{ product.name }}</h1>
+        
+        <div class="product-detail__meta">
+          <div class="meta-item" *ngIf="product.race">
+            <span class="meta-label">Raza:</span>
+            <span class="meta-value">{{ product.race }}</span>
+          </div>
+          
+          <div class="meta-item" *ngIf="product.gender">
+            <span class="meta-label">Género:</span>
+            <span class="meta-value">{{ product.gender }}</span>
+          </div>
+          
+          <div class="meta-item" *ngIf="product.affiliation">
+            <span class="meta-label">Afiliación:</span>
+            <span class="meta-value">{{ product.affiliation }}</span>
+          </div>
+        </div>
+
+        <div class="product-detail__stats" *ngIf="product.ki || product.maxKi">
+          <h3>Estadísticas de Poder</h3>
+          <div class="stat-item" *ngIf="product.ki">
+            <span class="stat-label">Ki:</span>
+            <span class="stat-value">{{ product.ki }}</span>
+          </div>
+          <div class="stat-item" *ngIf="product.maxKi">
+            <span class="stat-label">Ki Máximo:</span>
+            <span class="stat-value">{{ product.maxKi }}</span>
+          </div>
+        </div>
+
+        <div class="product-detail__description" *ngIf="product.description">
+          <h3>Descripción</h3>
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-detail__actions">
+          <button class="btn btn--primary btn--large">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="!loading && !product" class="error">
+    <p>No se pudo cargar el producto</p>
+    <button class="btn btn--primary" [routerLink]="['/menu']">
+      Volver al menú
+    </button>
+  </div>
+</div>

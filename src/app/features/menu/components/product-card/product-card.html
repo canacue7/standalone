@@ -1,1 +1,23 @@
-<p>product-card works!</p>
+<article class="product-card" aria-label="Product {{ product.name }}">
+  <div class="product-card__media">
+    <img class="product-card__image" [src]="product.image" alt="{{ product.name }}" />
+  </div>
+
+  <div class="product-card__body">
+    <h3 class="product-card__title">{{ product.name }}</h3>
+    <div class="product-card__meta">
+      <span class="product-card__price">{{ product.price | currency:'USD' }}</span>
+      <span class="product-card__rating" *ngIf="product.rating">★ {{ product.rating }}</span>
+    </div>
+
+    <p class="product-card__desc" *ngIf="product.description">{{ product.description }}</p>
+
+    <div class="product-card__actions">
+      <!-- <button class="btn btn--primary" (click)="addToCart.emit(product)">Agregar</button> -->
+      <button class="btn btn--primary" (click)="writeData()">Agregar</button>
+      <!-- <button class="btn btn--ghost" (click)="writeData()">Escribir</button> -->
+      <button class="btn btn--ghost" (click)="readData()">Leer</button>
+      <a class="product-card__link" [routerLink]="['/menu/detail', product.id]">Ver detalle</a>
+    </div>
+  </div>
+</article>

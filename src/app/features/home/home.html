@@ -1,3 +1,9 @@
-<h1>Bienvenido a Fresas con Crema 🍓</h1>
-<p>Deliciosas combinaciones listas para ti.</p>
-<button routerLink="/menu">Ver Menú</button>
+<section class="home-hero">
+	<h1 class="home-hero__title">Bienvenido a Fresas con Crema 🍓</h1>
+	<p class="home-hero__subtitle inicio">Deliciosas combinaciones listas para ti.</p>
+
+	<div class="home-hero__actions">
+		<button class="home-btn home-btn--primary" routerLink="/menu">Ver Menú</button>
+		<button class="home-btn home-btn--ghost" (click)="readData()">Agregados</button>
+	</div>
+</section>
