@@ -1,0 +1,63 @@
+<section class="checkout card-like">
+  <h2 class="checkout__title">Formulario de pedido</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="checkout__form">
+    <div class="field">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" formControlName="name" />
+      @if(f.name.touched && getErrorMessages('name')){
+        <span class="error">{{getErrorMessages('name')}}</span>
+      }
+      <!-- @if(f.name.touched && f.name.errors){ @if(f.name.errors.required){
+      <small class="error"> Ingrese nombre</small>
+      }@else{
+      <small class="error"> Nombre inválido</small>
+      }} -->
+      <!-- <small class="error" *ngIf="f.name.touched && f.name.invalid">Nombre requerido (min 2 caracteres)</small> -->
+    </div>
+
+    <div class="field">
+      <label for="phone">Celular</label>
+      <input id="phone" type="tel" formControlName="phone" />
+      <small class="error" *ngIf="f.phone.touched && f.phone.invalid">Número inválido</small>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      <small class="error" *ngIf="f.email.touched && f.email.invalid">Email inválido</small>
+    </div>
+
+    <div class="field">
+      <label for="date">Fecha</label>
+      <input id="date" type="date" formControlName="date" />
+      <small class="error" *ngIf="f.date.touched && f.date.invalid">Selecciona una fecha</small>
+    </div>
+
+    <div class="field field--inline">
+      <label>
+        <input type="checkbox" formControlName="notifications" />
+        Quiero recibir notificaciones
+      </label>
+    </div>
+
+    <fieldset class="field field--radio">
+      <legend>Método de pago</legend>
+      <div class="radios">
+        <label *ngFor="let opt of paymentOptions">
+          <input type="radio" [value]="opt.value" formControlName="payment" />
+          {{ opt.label }}
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="checkout__actions">
+      <button class="btn btn--primary" type="submit">Enviar</button>
+      <button class="btn btn--ghost" type="button" (click)="reset()">Limpiar</button>
+    </div>
+  </form>
+
+  <div *ngIf="success" class="checkout__success">
+    <p>Pedido enviado. Gracias 😊</p>
+  </div>
+</section>

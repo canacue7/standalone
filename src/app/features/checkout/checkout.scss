@@ -1,0 +1,14 @@
+.checkout { max-width:680px; margin: 1.2rem auto; }
+.checkout__title { margin:0 0 1rem 0; font-size:1.4rem; }
+.checkout__form { display:grid; gap:0.8rem; }
+.field { display:flex; flex-direction:column; }
+.field--inline { flex-direction:row; align-items:center; gap:0.6rem; }
+.field label { font-weight:600; margin-bottom:0.35rem; }
+.field input[type="text"], .field input[type="email"], .field input[type="tel"], .field input[type="date"] { padding:0.6rem; border-radius:8px; border:1px solid rgba(16,24,40,0.06); }
+.error { color:#b91c1c; font-size:0.85rem; margin-top:0.3rem; }
+.field--radio .radios { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.field--radio label { display:inline-flex; gap:0.45rem; align-items:center; padding:0.45rem 0.6rem; border-radius:8px; border:1px solid rgba(16,24,40,0.04); }
+.checkout__actions { display:flex; gap:0.6rem; margin-top:0.5rem; }
+.checkout__success { margin-top:1rem; padding:0.8rem; border-radius:8px; background: #ecfdf5; color:#065f46; }
+
+@media (max-width:600px){ .checkout { padding:0 1rem; } }
