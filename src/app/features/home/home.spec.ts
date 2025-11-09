@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { SetService } from '../../core/services/setData.service';
 import { Home } from './home';
 
 describe('Home', () => {
@@ -8,7 +9,8 @@ describe('Home', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Home]
+      imports: [Home, RouterTestingModule],
+      providers: [ { provide: SetService, useValue: { getData: () => ({ subscribe: () => {} }) } } ]
     })
     .compileComponents();
 
