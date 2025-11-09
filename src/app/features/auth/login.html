@@ -1,0 +1,18 @@
+<section class="card-like" style="max-width:520px;margin:1rem auto;padding:1rem">
+  <h2>Iniciar sesión</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div style="margin-bottom:.6rem">
+      <label>Usuario</label>
+      <input formControlName="username" />
+    </div>
+    <div style="margin-bottom:.6rem">
+      <label>Contraseña</label>
+      <input type="password" formControlName="password" />
+    </div>
+    <div style="display:flex;gap:.6rem">
+      <button class="btn btn--primary" type="submit">Entrar</button>
+      <button class="btn btn--ghost" type="button" (click)="form.reset()">Limpiar</button>
+    </div>
+    <p *ngIf="error" style="color:#b91c1c;margin-top:.6rem">{{ error }}</p>
+  </form>
+</section>
