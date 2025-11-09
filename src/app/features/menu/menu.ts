@@ -1,33 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ProductCard } from './components/product-card/product-card';
-import { ProductDetail } from './components/product-detail/product-detail';
 import { CommonModule } from '@angular/common';
-import { ProductService } from '../../core/services/products';
+import { Store } from '@ngrx/store';
+import { loadProducts } from '../../store/ngrx/products.actions';
+import { selectAllProducts, selectProductsLoading, selectProductsError } from '../../store/ngrx/products.selectors';
+import { addToCart } from '../../store/ngrx/cart.actions';
 
 @Component({
   selector: 'app-menu',
-  imports: [CommonModule,ProductDetail, ProductCard],
+  imports: [CommonModule, ProductCard],
   templateUrl: './menu.html',
   styleUrl: './menu.scss',
 })
-export class Menu implements OnInit{
+export class Menu implements OnInit {
+  private store = inject(Store);
 
-  constructor(private productService:ProductService){
-
-  }
+  products: any[] = [];
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
-      console.log(data)
-      // const eldat= data.items
-      this.products = data.items
-  })
+    // Ask NgRx to load products; ProductsEffects will call the service and populate the store
+    this.store.dispatch(loadProducts());
+
+    // Subscribe to the products slice
+    this.store.select(selectAllProducts).subscribe((p) => {
+      console.log('[NgRx] products slice changed:', p);
+      this.products = p || [];
+    });
+
+    // Debug: log loading and errors to help diagnose why products may be missing
+    this.store.select(selectProductsLoading).subscribe((l) => console.log('[NgRx] products loading:', l));
+    this.store.select(selectProductsError).subscribe((e) => e && console.error('[NgRx] products error:', e));
   }
 
-  products:any[] =[]
-
-  onAddToCart(product:any){
-    console.log('añadido producto', product)
+  onAddToCart(product: any) {
+    this.store.dispatch(addToCart({ product }));
   }
-
 }
